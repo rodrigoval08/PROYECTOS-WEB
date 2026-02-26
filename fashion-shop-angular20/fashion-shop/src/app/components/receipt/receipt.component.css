@@ -1,0 +1,251 @@
+.receipt-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(14,14,14,0.75);
+  backdrop-filter: blur(4px);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.receipt-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.receipt-paper {
+  background: #fffdf8;
+  width: 380px;
+  padding: 2rem 1.8rem;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  border-radius: 2px;
+  font-family: 'DM Sans', sans-serif;
+  position: relative;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+/* Torn edge top */
+.receipt-paper::before {
+  content: '';
+  position: absolute;
+  top: -6px; left: 0; right: 0;
+  height: 6px;
+  background: repeating-linear-gradient(90deg, transparent, transparent 8px, #fffdf8 8px, #fffdf8 16px);
+}
+
+.receipt-header {
+  text-align: center;
+  margin-bottom: 0.8rem;
+}
+
+.receipt-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-bottom: 0.3rem;
+}
+
+.brand-icon { color: #b8975a; font-size: 0.9rem; }
+
+.brand-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  letter-spacing: 0.2em;
+  font-weight: 700;
+  color: #0e0e0e;
+}
+
+.receipt-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.receipt-type {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #7a7068;
+}
+
+.receipt-num {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #c9472b;
+  letter-spacing: 0.1em;
+}
+
+.receipt-divider-deco {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.8rem 0;
+}
+
+.receipt-divider-deco span:not(.deco-diamond) {
+  flex: 1;
+  height: 1px;
+  background: #e0d8cc;
+}
+
+.deco-diamond {
+  color: #b8975a;
+  font-size: 0.5rem;
+}
+
+.receipt-customer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-bottom: 0.8rem;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+}
+
+.info-label {
+  color: #7a7068;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.7rem;
+}
+
+.info-value { font-weight: 500; color: #0e0e0e; }
+
+.receipt-rule {
+  height: 1px;
+  background: repeating-linear-gradient(90deg, #c9bfb0 0, #c9bfb0 4px, transparent 4px, transparent 8px);
+  margin: 0.8rem 0;
+}
+
+.receipt-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.78rem;
+}
+
+.receipt-table th {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.65rem;
+  color: #7a7068;
+  padding-bottom: 0.5rem;
+  font-weight: 500;
+  text-align: left;
+}
+
+.receipt-table td {
+  padding: 0.35rem 0;
+  vertical-align: middle;
+  color: #0e0e0e;
+}
+
+.col-desc { width: 50%; }
+.col-qty, .col-unit, .col-total { text-align: right; }
+
+.item-emoji-sm { font-size: 0.9rem; margin-right: 0.3rem; }
+
+.receipt-totals {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: #7a7068;
+  letter-spacing: 0.05em;
+}
+
+.total-final {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0e0e0e;
+  margin-top: 0.4rem;
+}
+
+.total-final span:last-child { color: #c9472b; }
+
+.receipt-footer {
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.receipt-footer p {
+  font-size: 0.75rem;
+  color: #0e0e0e;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+}
+
+.footer-sub {
+  font-size: 0.65rem !important;
+  color: #7a7068 !important;
+  font-family: 'DM Sans', sans-serif !important;
+  font-style: normal !important;
+  margin-top: 0.3rem;
+}
+
+.barcode {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.barcode-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 32px;
+}
+
+.bar {
+  width: 2px;
+  background: #0e0e0e;
+}
+
+.barcode-text {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: #7a7068;
+}
+
+.btn-close-receipt {
+  background: var(--bone, #f5f0eb);
+  border: none;
+  padding: 0.75rem 2rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 2px;
+  color: #0e0e0e;
+  transition: background 0.2s;
+}
+
+.btn-close-receipt:hover { background: #e8e0d5; }

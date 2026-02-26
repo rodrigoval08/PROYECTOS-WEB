@@ -1,0 +1,54 @@
+<div class="app-shell">
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <span class="brand-icon">✦</span>
+        <span class="brand-name">VELOUR</span>
+        <span class="brand-tagline">Studio</span>
+      </div>
+      <nav class="header-nav">
+        <span class="nav-link">Colección</span>
+        <span class="nav-link">Nosotros</span>
+        <span class="nav-link">Contacto</span>
+      </nav>
+      <div class="header-right">
+        <span class="welcome-text">Hola, <strong>Sofía Reyes</strong></span>
+        <button class="cart-bubble" [class.has-items]="totalItems() > 0">
+          🛍️
+          @if (totalItems() > 0) {
+            <span class="cart-count">{{ totalItems() }}</span>
+          }
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-layout">
+    <aside class="sidebar-left">
+      <div class="sidebar-label">Nueva Temporada</div>
+      <h1 class="hero-title">
+        OTOÑO<br>
+        <em>2025</em>
+      </h1>
+      <p class="hero-sub">Prendas que cuentan tu historia</p>
+      <div class="sidebar-deco"></div>
+    </aside>
+
+    <section class="content-area">
+      <app-product-list (addToCart)="addToCart($event)" />
+      <app-cart
+        [items]="cartItems()"
+        (remove)="removeFromCart($event)"
+        (updateQty)="updateQuantity($event.id, $event.qty)"
+        (checkout)="checkout()"
+      />
+    </section>
+  </main>
+
+  @if (showReceipt()) {
+    <app-receipt
+      [items]="cartItems()"
+      (close)="closeReceipt()"
+    />
+  }
+</div>

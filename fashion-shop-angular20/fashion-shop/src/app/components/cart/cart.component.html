@@ -1,0 +1,55 @@
+<section class="cart-section">
+  <div class="section-header">
+    <div class="section-line"></div>
+    <h2 class="section-title">Carrito</h2>
+    @if (items().length > 0) {
+      <span class="section-count">{{ items().length }} {{ items().length === 1 ? 'artículo' : 'artículos' }}</span>
+    }
+  </div>
+
+  @if (items().length === 0) {
+    <div class="cart-empty">
+      <span class="empty-icon">🛍️</span>
+      <p>Tu carrito está vacío</p>
+      <span>Agrega prendas de la colección</span>
+    </div>
+  } @else {
+    <div class="cart-items">
+      @for (item of items(); track item.product.id) {
+        <div class="cart-item">
+          <span class="item-emoji">{{ item.product.emoji }}</span>
+          <div class="item-details">
+            <span class="item-name">{{ item.product.name }}</span>
+            <span class="item-cat">{{ item.product.category }}</span>
+          </div>
+          <div class="qty-control">
+            <button (click)="onDecrease(item)">−</button>
+            <span>{{ item.quantity }}</span>
+            <button (click)="onIncrease(item)">+</button>
+          </div>
+          <span class="item-total">S/ {{ (item.product.price * item.quantity) | number:'1.2-2' }}</span>
+          <button class="btn-remove" (click)="onRemove(item.product.id)">✕</button>
+        </div>
+      }
+    </div>
+
+    <div class="cart-summary">
+      <div class="summary-row">
+        <span>Subtotal</span>
+        <span>S/ {{ subtotal() | number:'1.2-2' }}</span>
+      </div>
+      <div class="summary-row muted">
+        <span>IGV (18%)</span>
+        <span>S/ {{ igv() | number:'1.2-2' }}</span>
+      </div>
+      <div class="summary-divider"></div>
+      <div class="summary-row total-row">
+        <span>Total</span>
+        <span>S/ {{ total() | number:'1.2-2' }}</span>
+      </div>
+      <button class="btn-checkout" (click)="onCheckout()">
+        Generar Boleta →
+      </button>
+    </div>
+  }
+</section>

@@ -1,0 +1,28 @@
+<section class="product-section">
+  <div class="section-header">
+    <div class="section-line"></div>
+    <h2 class="section-title">Colección</h2>
+    <span class="section-count">{{ products.length }} piezas</span>
+  </div>
+
+  <div class="product-grid">
+    @for (product of products; track product.id) {
+      <article class="product-card">
+        <div class="product-visual">
+          <span class="product-emoji">{{ product.emoji }}</span>
+          @if (product.badge) {
+            <span class="badge badge-{{ product.badge }}">{{ badgeLabel(product.badge) }}</span>
+          }
+        </div>
+        <div class="product-info">
+          <span class="product-category">{{ product.category }}</span>
+          <h3 class="product-name">{{ product.name }}</h3>
+          <div class="product-footer">
+            <span class="product-price">S/ {{ product.price | number:'1.2-2' }}</span>
+            <button class="btn-add" (click)="onAdd(product)">+ Añadir</button>
+          </div>
+        </div>
+      </article>
+    }
+  </div>
+</section>
